@@ -7,13 +7,21 @@
 	<ul id="products"></ul>
 
 	<form action="@routes.HomeController.addProduct()" method="post">
-		<input type="text" name="name">
-		<input type="real" name="price">
+		<input type="text" name="name" placeholder="Name">
+		<input type="real" name="price" placeholder="Price">
 		<button>Add Product</button>
 	</form>
 
-	<form action='@routes.HomeController.deleteProduct("S")'>
-		<input type="text" name="name">
+	<form action='@routes.HomeController.deleteProduct("name")'>
+		<input type="text" name="id" placeholder="Id">
+		<input type="text" name="name" placeholder="Name">
 		<input type="submit" value="Delete"/>
+	</form>
+
+	<form action='@routes.HomeController.updateProduct("id")'>
+		<input type="text" name="id" placeholder="Id">
+		<input type="text" name="name" placeholder="Name">
+		<input type="text" name="price" placeholder="Price">
+		<input type="submit" value="Update"/>
 	</form>
 }

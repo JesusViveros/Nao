@@ -34,17 +34,22 @@ public class HomeController extends Controller {
 	}
 
 	public Result deleteProduct(String name) {
-		SqlUpdate down = Ebean.createSqlUpdate("DELETE FROM product WHERE name = :param1 ");
-		down.setParameter("param1", name);
-		int deletedCount = down.execute();
-		return ok("Dlete" + name);
+        Product product = Form.form(Product.class).bindFromRequest().get();
+		SqlUpdate down = Ebean.createSqlUpdate("DELETE FROM product WHERE name = :param1 OR id = :param2");
+		down.setParameter("param1", product.name);
+		down.setParameter("param2", product.id);
+		down.execute();
+		return ok();
 	}
 
-	public Result updateProduct() {
-		String sql = "UPDATE product SET name = 'Diana', price = 30.5  WHERE name = :expired";
+	public Result updateProduct(String id) {
+        Product product = Form.form(Product.class).bindFromRequest().get();
+		String sql = "UPDATE product SET name = :name, price = :price  WHERE id = :edit";
 		SqlUpdate update = Ebean.createSqlUpdate(sql);
-		update.setParameter("expired", "a");
-		int updateCounter = update.execute();
+		update.setParameter("name", product.name);
+		update.setParameter("price", product.price);
+		update.setParameter("edit", product.id);
+		update.execute();
 		return ok();
 	}
 }
