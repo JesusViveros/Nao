@@ -1,6 +1,8 @@
 package controllers;
 
 import com.avaje.ebean.Model;
+import com.avaje.ebean.Ebean;
+import com.avaje.ebean.SqlUpdate;
 
 import models.Product;
 import play.*;
@@ -10,7 +12,9 @@ import play.mvc.*;
 import views.html.*;
 
 import java.util.List;
+import play.libs.Json;
 import static play.libs.Json.toJson;
+import play.twirl.api.Content;
 
 public class HomeController extends Controller {
 
@@ -27,5 +31,20 @@ public class HomeController extends Controller {
 	public Result getProducts() {
 		List<Product> products = new Model.Finder(String.class, Product.class).all();
 		return ok(toJson(products));
+	}
+
+	public Result deleteProduct(String name) {
+		SqlUpdate down = Ebean.createSqlUpdate("DELETE FROM product WHERE name = :param1 ");
+		down.setParameter("param1", name);
+		int deletedCount = down.execute();
+		return ok("Dlete" + name);
+	}
+
+	public Result updateProduct() {
+		String sql = "UPDATE product SET name = 'Diana', price = 30.5  WHERE name = :expired";
+		SqlUpdate update = Ebean.createSqlUpdate(sql);
+		update.setParameter("expired", "a");
+		int updateCounter = update.execute();
+		return ok();
 	}
 }

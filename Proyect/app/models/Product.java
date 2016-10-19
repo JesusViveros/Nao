@@ -13,4 +13,8 @@ public class Product extends Model {
 	public String name;
 	public Long categoryid;
 	public float price;
+
+	public static Finder<Long,Product> find = new Finder<Long,Product>(
+		Long.class, Product.class
+	);
 }

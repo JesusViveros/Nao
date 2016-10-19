@@ -1,10 +1,19 @@
 @(message: String)
 
-@main("Welcome to Play") {
+@main("Test") {
+	<script type="text/javascript" src='@routes.Assets.versioned("javascripts/jquery.js")'></script>
+	<script type="text/javascript" src='@routes.Assets.versioned("index.js")'></script>
+
+	<ul id="products"></ul>
+
 	<form action="@routes.HomeController.addProduct()" method="post">
 		<input type="text" name="name">
 		<input type="real" name="price">
 		<button>Add Product</button>
 	</form>
 
+	<form action='@routes.HomeController.deleteProduct("S")'>
+		<input type="text" name="name">
+		<input type="submit" value="Delete"/>
+	</form>
 }
