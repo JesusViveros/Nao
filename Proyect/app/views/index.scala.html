@@ -3,25 +3,26 @@
 @main("Test") {
 	<script type="text/javascript" src='@routes.Assets.versioned("javascripts/jquery.js")'></script>
 	<script type="text/javascript" src='@routes.Assets.versioned("index.js")'></script>
+	<script type="text/javascript" src='@routes.Assets.versioned("numbers.js")'></script>
 
 	<ul id="products"></ul>
 
 	<form action="@routes.HomeController.addProduct()" method="post">
 		<input type="text" name="name" placeholder="Name">
-		<input type="real" name="price" placeholder="Price">
+		<input type="text" name="price" placeholder="Price" onkeypress="return isNumberKey(event)">
 		<button>Add Product</button>
 	</form>
 
-	<form action='@routes.HomeController.deleteProduct("name")'>
-		<input type="text" name="id" placeholder="Id">
+		<form action='@routes.HomeController.deleteProduct("name")'>
+		<input type="text" name="id" placeholder="Id" onkeypress="return isDigitKey(event)">
 		<input type="text" name="name" placeholder="Name">
 		<input type="submit" value="Delete"/>
 	</form>
 
 	<form action='@routes.HomeController.updateProduct("id")'>
-		<input type="text" name="id" placeholder="Id">
+		<input type="text" name="id" placeholder="Id" onkeypress="return isDigitKey(event)">
 		<input type="text" name="name" placeholder="Name">
-		<input type="text" name="price" placeholder="Price">
+		<input type="text" name="price" placeholder="Price" onkeypress="return isNumberKey(event)">
 		<input type="submit" value="Update"/>
 	</form>
 }
