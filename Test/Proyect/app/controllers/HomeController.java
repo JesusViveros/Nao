@@ -19,7 +19,7 @@ import play.twirl.api.Content;
 public class HomeController extends Controller {
 
 	public Result index() {
-		return ok(index.render("Your new application is ready."));
+		return ok(index.render("Testing project"));
 	}
 
 	public Result addProduct() {
@@ -33,16 +33,16 @@ public class HomeController extends Controller {
 		return ok(toJson(products));
 	}
 
-	public Result deleteProduct(String name) {
+	public Result deleteProduct() {
         Product product = Form.form(Product.class).bindFromRequest().get();
 		SqlUpdate down = Ebean.createSqlUpdate("DELETE FROM product WHERE name = :param1 OR id = :param2");
 		down.setParameter("param1", product.name);
 		down.setParameter("param2", product.id);
 		down.execute();
-		return ok();
+		return redirect(routes.HomeController.index());
 	}
 
-	public Result updateProduct(String id) {
+	public Result updateProduct() {
         Product product = Form.form(Product.class).bindFromRequest().get();
 		String sql = "UPDATE product SET name = :name, price = :price  WHERE id = :edit";
 		SqlUpdate update = Ebean.createSqlUpdate(sql);
@@ -50,6 +50,6 @@ public class HomeController extends Controller {
 		update.setParameter("price", product.price);
 		update.setParameter("edit", product.id);
 		update.execute();
-		return ok();
+		return redirect(routes.HomeController.index());
 	}
 }

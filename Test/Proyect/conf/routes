@@ -14,5 +14,5 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 GET     /products                   controllers.HomeController.getProducts()
 POST    /product                    controllers.HomeController.addProduct()
-GET     /product/:name/delete       controllers.HomeController.deleteProduct(name: String)
-GET     /product/:id/update         controllers.HomeController.updateProduct(id: String)
+GET     /products2                  controllers.HomeController.deleteProduct()
+GET     /products3                  controllers.HomeController.updateProduct()

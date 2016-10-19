@@ -13,13 +13,13 @@
 		<button>Add Product</button>
 	</form>
 
-		<form action='@routes.HomeController.deleteProduct("name")'>
+		<form action='@routes.HomeController.deleteProduct()'>
 		<input type="text" name="id" placeholder="Id" onkeypress="return isDigitKey(event)">
 		<input type="text" name="name" placeholder="Name">
 		<input type="submit" value="Delete"/>
 	</form>
 
-	<form action='@routes.HomeController.updateProduct("id")'>
+	<form action='@routes.HomeController.updateProduct()'>
 		<input type="text" name="id" placeholder="Id" onkeypress="return isDigitKey(event)">
 		<input type="text" name="name" placeholder="Name">
 		<input type="text" name="price" placeholder="Price" onkeypress="return isNumberKey(event)">
