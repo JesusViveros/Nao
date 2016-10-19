@@ -1,12 +1,6 @@
 @(message: String)
 
 @main("Welcome to Play") {
-
-	<script type="text/javascript" src='@routes.Assets.versioned("javascripts/jquery.js")'></script>
-	<script type="text/javascript" src='@routes.Assets.versioned("index.js")'></script>
-
-	<ul id="products"></ul>
-
 	<form action="@routes.HomeController.addProduct()" method="post">
 		<input type="text" name="name">
 		<input type="real" name="price">
